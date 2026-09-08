@@ -1,52 +1,70 @@
 import 'package:flutter/material.dart';
-import 'tarjeta_oportunidad.dart';
+import 'widgets_comunes.dart';
 
-class PantallaOportunidades extends StatelessWidget {
-  const PantallaOportunidades({super.key});
+class PantallaPersonal extends StatefulWidget {
+  const PantallaPersonal({super.key});
+
+  @override
+  State<PantallaPersonal> createState() => _PantallaPersonalState();
+}
+
+class _PantallaPersonalState extends State<PantallaPersonal> {
+  bool _indumentariaCompleta = false;
+  bool _higieneManos = false;
+  bool _carnetSanitario = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Oportunidades de Mejora'),
+        title: const Text('Inspección de Personal'),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Hallazgos Identificados',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            const EncabezadoSeccion(
+              titulo: 'Criterios de Evaluación',
+              icono: Icons.badge,
             ),
-            const SizedBox(height: 12),
-            Expanded(
-              child: ListView(
-                children: const [
-                  TarjetaOportunidad(
-                    titulo: 'Falta de Señalética',
-                    descripcion: 'No se observa cartel de lavado de manos en zona de cocina.',
-                    nivelRiesgo: 'Medio',
-                  ),
-                  TarjetaOportunidad(
-                    titulo: 'Almacenamiento Inadecuado',
-                    descripcion: 'Productos de limpieza cerca de insumos de cocina.',
-                    nivelRiesgo: 'Alto',
-                  ),
-                ],
-              ),
+            CheckboxListTile(
+              title: const Text('Uso correcto de indumentaria/uniforme'),
+              subtitle: const Text('Cofia, mascarilla y gabán limpios'),
+              value: _indumentariaCompleta,
+              onChanged: (v) => setState(() => _indumentariaCompleta = v ?? false),
             ),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(48),
-                backgroundColor: Colors.teal,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () => Navigator.pushNamed(context, '/'),
-              icon: const Icon(Icons.home),
-              label: const Text('Finalizar Auditoría / Volver al Inicio'),
+            CheckboxListTile(
+              title: const Text('Higiene y lavado de manos'),
+              subtitle: const Text('Uso de estaciones de desinfección'),
+              value: _higieneManos,
+              onChanged: (v) => setState(() => _higieneManos = v ?? false),
+            ),
+            CheckboxListTile(
+              title: const Text('Carnet de sanidad vigente'),
+              subtitle: const Text('Documentación al día'),
+              value: _carnetSanitario,
+              onChanged: (v) => setState(() => _carnetSanitario = v ?? false),
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: BotonNavegacion(
+                    texto: 'Atrás',
+                    esPrimario: false,
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: BotonNavegacion(
+                    texto: 'Ver Hallazgos',
+                    onPressed: () => Navigator.pushNamed(context, '/oportunidades'),
+                  ),
+                ),
+              ],
             )
           ],
         ),

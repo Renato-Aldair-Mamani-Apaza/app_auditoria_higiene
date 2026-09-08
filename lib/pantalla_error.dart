@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets_comunes.dart';
 
 class PantallaError extends StatelessWidget {
   const PantallaError({super.key});
@@ -7,7 +8,7 @@ class PantallaError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Error'),
+        title: const Text('Error de Navegación'),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
       ),
@@ -17,18 +18,18 @@ class PantallaError extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, color: Colors.red, size: 80),
+              const Icon(Icons.error_outline, size: 80, color: Colors.red),
               const SizedBox(height: 16),
               const Text(
-                'Ruta no encontrada o error del sistema',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                'La vista solicitada no está disponible o la ruta es incorrecta.',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, '/'),
-                child: const Text('Volver al Inicio'),
-              )
+              BotonNavegacion(
+                texto: 'Volver al Inicio',
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false),
+              ),
             ],
           ),
         ),

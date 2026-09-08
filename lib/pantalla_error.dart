@@ -7,19 +7,30 @@ class PantallaError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prueba de Error de Desborde'),
-        backgroundColor: const Color(0xFF0F6E56),
+        title: const Text('Error'),
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(14),
-        child: Row(
-          children: const [
-            Text('OPORTUNIDAD 01', style: TextStyle(fontWeight: FontWeight.bold)),
-            Icon(Icons.radio_button_unchecked, size: 16),
-            Text('DESPUÉS DEL RIESGO DE EXPOSICIÓN A FLUIDOS CORPORALES EN EL ÁREA DE CUIDADOS INTENSIVOS'),
-            Icon(Icons.radio_button_unchecked, size: 16),
-            Text('FRICCIÓN DE MANOS CON PREPARADO A BASE DE ALCOHOL (FM)'),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, color: Colors.red, size: 80),
+              const SizedBox(height: 16),
+              const Text(
+                'Ruta no encontrada o error del sistema',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => Navigator.pushReplacementNamed(context, '/'),
+                child: const Text('Volver al Inicio'),
+              )
+            ],
+          ),
         ),
       ),
     );

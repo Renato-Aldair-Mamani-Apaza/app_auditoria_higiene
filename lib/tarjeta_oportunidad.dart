@@ -14,9 +14,9 @@ class TarjetaOportunidad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final esAlto = nivelRiesgo.toLowerCase() == 'alto';
+    final bool esAlto = nivelRiesgo.toLowerCase() == 'alto';
     return Card(
-      elevation: 3,
+      elevation: 2,
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: ListTile(
         leading: Icon(
@@ -29,7 +29,10 @@ class TarjetaOportunidad extends StatelessWidget {
         trailing: Chip(
           label: Text(
             nivelRiesgo,
-            style: TextStyle(color: esAlto ? Colors.red.shade900 : Colors.orange.shade900),
+            style: TextStyle(
+              color: esAlto ? Colors.red.shade900 : Colors.orange.shade900,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           backgroundColor: esAlto ? Colors.red.shade100 : Colors.orange.shade100,
         ),

@@ -1,24 +1,20 @@
-# Aplicación Auditoría de Higiene - Guía N° 04
+# App Auditoría de Higiene - Guía de Aplicación N° 04
 
-Aplicación móvil desarrollada en Flutter para la gestión, registro y seguimiento de auditorías de higiene e inspección en establecimientos.
+Aplicación desarrollada en Flutter para la realización de auditorías de higiene, inspección de establecimientos y registro de oportunidades de mejora.
 
-## 📱 Estructura del Proyecto
+## 📁 Estructura del Código Fuente (`lib/`)
 
-El proyecto sigue una arquitectura modular en la carpeta `lib/`:
+El proyecto está organizado en pantallas y componentes visuales reutilizables:
 
-* `main.dart`: Configuración general del proyecto y gestión del sistema de rutas navegables.
-* `pantalla_establecimiento.dart`: Formulario para el registro e inspección del local auditado.
-* `pantalla_personal.dart`: Módulo de verificación de normas de higiene del personal.
-* `pantalla_oportunidades.dart`: Listado de hallazgos y oportunidades de mejora detectadas.
-* `pantalla_error.dart`: Vista para el manejo global de excepciones y rutas no encontradas.
-* `tarjeta_oportunidad.dart`: Widget personalizado reutilizable para presentar incidencias según nivel de riesgo.
+* **`main.dart`**: Punto de entrada de la aplicación y configuración del mapa de rutas navegables (`/`, `/personal`, `/oportunidades`, `/error`).
+* **`pantalla_establecimiento.dart`**: Formulario inicial para la captura de datos generales del local y responsable de la auditoría.
+* **`pantalla_personal.dart`**: Lista de verificación para evaluar el cumplimiento de las normas de higiene del personal.
+* **`pantalla_oportunidades.dart`**: Vista de hallazgos y oportunidades de mejora identificadas durante la inspección.
+* **`pantalla_error.dart`**: Pantalla para el manejo global de excepciones y rutas no encontradas.
+* **`tarjeta_oportunidad.dart`**: Componente visual reutilizable para la representación de hallazgos de acuerdo con el nivel de riesgo (Alto/Medio).
+* **`widgets_comunes.dart`**: Componentes de interfaz compartidos (encabezados de sección y botones estilizados).
 
-## 🚀 Requisitos de Ejecución
-
-* **Flutter SDK**: `>=3.0.0`
-* **Dart**: `>=3.0.0`
-
-## 🛠️ Instrucciones de Instalación y Ejecución
+## 🚀 Requisitos e Instalación
 
 1. Clonar el repositorio:
    ```bash

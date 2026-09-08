@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets_comunes.dart';
 
 class PantallaPersonal extends StatefulWidget {
   const PantallaPersonal({super.key});
@@ -8,55 +9,59 @@ class PantallaPersonal extends StatefulWidget {
 }
 
 class _PantallaPersonalState extends State<PantallaPersonal> {
-  bool _indumentariaCorrecta = false;
+  bool _indumentariaCompleta = false;
   bool _higieneManos = false;
+  bool _carnetSanitario = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Evaluación de Personal'),
+        title: const Text('Inspección de Personal'),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Lista de Verificación de Personal',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            CheckboxListTile(
-              title: const Text('Uso correcto de indumentaria (Uniforme/Cofia)'),
-              value: _indumentariaCorrecta,
-              onChanged: (val) => setState(() => _indumentariaCorrecta = val ?? false),
+            const EncabezadoSeccion(
+              titulo: 'Criterios de Evaluación',
+              icono: Icons.badge,
             ),
             CheckboxListTile(
-              title: const Text('Cumplimiento de lavado e higiene de manos'),
+              title: const Text('Uso correcto de indumentaria/uniforme'),
+              subtitle: const Text('Cofia, mascarilla y gabán limpios'),
+              value: _indumentariaCompleta,
+              onChanged: (v) => setState(() => _indumentariaCompleta = v ?? false),
+            ),
+            CheckboxListTile(
+              title: const Text('Higiene y lavado de manos'),
+              subtitle: const Text('Uso de estaciones de desinfección'),
               value: _higieneManos,
-              onChanged: (val) => setState(() => _higieneManos = val ?? false),
+              onChanged: (v) => setState(() => _higieneManos = v ?? false),
+            ),
+            CheckboxListTile(
+              title: const Text('Carnet de sanidad vigente'),
+              subtitle: const Text('Documentación al día'),
+              value: _carnetSanitario,
+              onChanged: (v) => setState(() => _carnetSanitario = v ?? false),
             ),
             const Spacer(),
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
+                  child: BotonNavegacion(
+                    texto: 'Atrás',
+                    esPrimario: false,
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Volver'),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 10),
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
-                      foregroundColor: Colors.white,
-                    ),
+                  child: BotonNavegacion(
+                    texto: 'Ver Hallazgos',
                     onPressed: () => Navigator.pushNamed(context, '/oportunidades'),
-                    child: const Text('Ver Oportunidades'),
                   ),
                 ),
               ],

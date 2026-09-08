@@ -7,38 +7,23 @@
 
 import 'package:flutter/material.dart';
 import 'pantalla_establecimiento.dart';
-import 'pantalla_personal.dart';
-import 'pantalla_oportunidades.dart';
-import 'pantalla_error.dart';
 
 void main() {
-  runApp(const AppAuditoriaHigiene());
+  runApp(const MyApp());
 }
 
-class AppAuditoriaHigiene extends StatelessWidget {
-  const AppAuditoriaHigiene({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Auditoría de Higiene - Guía 04',
+      title: 'Auditoría Higiene',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const PantallaEstablecimiento(),
-        '/personal': (context) => const PantallaPersonal(),
-        '/oportunidades': (context) => const PantallaOportunidades(),
-        '/error': (context) => const PantallaError(),
-      },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(
-          builder: (context) => const PantallaError(),
-        );
-      },
+      home: const PantallaEstablecimiento(),
     );
   }
 }

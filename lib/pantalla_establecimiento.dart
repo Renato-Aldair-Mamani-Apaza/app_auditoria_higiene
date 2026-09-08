@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets_comunes.dart';
 
 class PantallaEstablecimiento extends StatefulWidget {
   const PantallaEstablecimiento({super.key});
@@ -9,8 +10,17 @@ class PantallaEstablecimiento extends StatefulWidget {
 
 class _PantallaEstablecimientoState extends State<PantallaEstablecimiento> {
   final _formKey = GlobalKey<FormState>();
-  final _nombreController = TextEditingController();
-  final _direccionController = TextEditingController();
+  final TextEditingController _nombreController = TextEditingController();
+  final TextEditingController _direccionController = TextEditingController();
+  final TextEditingController _responsableController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nombreController.dispose();
+    _direccionController.dispose();
+    _responsableController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +36,21 @@ class _PantallaEstablecimientoState extends State<PantallaEstablecimiento> {
           key: _formKey,
           child: ListView(
             children: [
-              const Text(
-                'Registro de Auditoría',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              const EncabezadoSeccion(
+                titulo: 'Registro de Auditoría',
+                icono: Icons.store,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _nombreController,
                 decoration: const InputDecoration(
                   labelText: 'Nombre del Establecimiento',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.store),
+                  prefixIcon: Icon(Icons.business),
                 ),
-                validator: (value) => value == null || value.isEmpty ? 'Campo requerido' : null,
+                validator: (val) => val == null || val.isEmpty ? 'Ingrese el nombre' : null,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 15),
               TextFormField(
                 controller: _direccionController,
                 decoration: const InputDecoration(
@@ -48,22 +58,26 @@ class _PantallaEstablecimientoState extends State<PantallaEstablecimiento> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.location_on),
                 ),
-                validator: (value) => value == null || value.isEmpty ? 'Campo requerido' : null,
+                validator: (val) => val == null || val.isEmpty ? 'Ingrese la dirección' : null,
               ),
-              const SizedBox(height: 24),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+              const SizedBox(height: 15),
+              TextFormField(
+                controller: _responsableController,
+                decoration: const InputDecoration(
+                  labelText: 'Responsable del Local',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
                 ),
+                validator: (val) => val == null || val.isEmpty ? 'Ingrese el responsable' : null,
+              ),
+              const SizedBox(height: 25),
+              BotonNavegacion(
+                texto: 'Continuar a Evaluación de Personal',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     Navigator.pushNamed(context, '/personal');
                   }
                 },
-                icon: const Icon(Icons.arrow_forward),
-                label: const Text('Continuar a Inspección de Personal'),
               ),
             ],
           ),

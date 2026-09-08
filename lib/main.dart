@@ -6,24 +6,57 @@
 // ============================================================================
 
 import 'package:flutter/material.dart';
-import 'pantalla_establecimiento.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class EncabezadoSeccion extends StatelessWidget {
+  final String titulo;
+  final IconData icono;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const EncabezadoSeccion({
+    super.key,
+    required this.titulo,
+    required this.icono,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Auditoría Higiene',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: Row(
+        children: [
+          Icon(icono, color: Colors.teal, size: 28),
+          const SizedBox(width: 10),
+          Text(
+            titulo,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
-      home: const PantallaEstablecimiento(),
+    );
+  }
+}
+
+class BotonNavegacion extends StatelessWidget {
+  final String texto;
+  final VoidCallback onPressed;
+  final bool esPrimario;
+
+  const BotonNavegacion({
+    super.key,
+    required this.texto,
+    required this.onPressed,
+    this.esPrimario = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: esPrimario ? Colors.teal : Colors.grey.shade300,
+        foregroundColor: esPrimario ? Colors.white : Colors.black87,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+      ),
+      onPressed: onPressed,
+      child: Text(texto, style: const TextStyle(fontSize: 16)),
     );
   }
 }

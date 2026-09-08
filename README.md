@@ -1,17 +1,25 @@
-# app_auditoria_higiene
+# Aplicación Auditoría de Higiene - Guía N° 04
 
-A new Flutter project.
+Aplicación móvil desarrollada en Flutter para la gestión, registro y seguimiento de auditorías de higiene e inspección en establecimientos.
 
-## Getting Started
+## 📱 Estructura del Proyecto
 
-This project is a starting point for a Flutter application.
+El proyecto sigue una arquitectura modular en la carpeta `lib/`:
 
-A few resources to get you started if this is your first Flutter project:
+* `main.dart`: Configuración general del proyecto y gestión del sistema de rutas navegables.
+* `pantalla_establecimiento.dart`: Formulario para el registro e inspección del local auditado.
+* `pantalla_personal.dart`: Módulo de verificación de normas de higiene del personal.
+* `pantalla_oportunidades.dart`: Listado de hallazgos y oportunidades de mejora detectadas.
+* `pantalla_error.dart`: Vista para el manejo global de excepciones y rutas no encontradas.
+* `tarjeta_oportunidad.dart`: Widget personalizado reutilizable para presentar incidencias según nivel de riesgo.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 🚀 Requisitos de Ejecución
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* **Flutter SDK**: `>=3.0.0`
+* **Dart**: `>=3.0.0`
+
+## 🛠️ Instrucciones de Instalación y Ejecución
+
+1. Clonar el repositorio:
+   ```bash
+   git clone [https://github.com/TU_USUARIO/app_auditoria_higiene.git](https://github.com/TU_USUARIO/app_auditoria_higiene.git)

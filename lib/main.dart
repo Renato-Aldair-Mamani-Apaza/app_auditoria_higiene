@@ -1,5 +1,5 @@
 // ============================================================================
-// SIS048 - Desarrollo de Software II | Guía de Aplicación N.º 3
+// SIS048 - Desarrollo de Software II | Guía de Aplicación N.º 4
 // Integrantes del equipo:
 // 1. Mamani Apaza Renato Aldair
 // 2. Quispe Quispe Heral Mirashiro
@@ -12,72 +12,33 @@ import 'pantalla_oportunidades.dart';
 import 'pantalla_error.dart';
 
 void main() {
-  runApp(const MiApp());
+  runApp(const AppAuditoriaHigiene());
 }
 
-class MiApp extends StatelessWidget {
-  const MiApp({super.key});
+class AppAuditoriaHigiene extends StatelessWidget {
+  const AppAuditoriaHigiene({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Auditoría de Higiene - Guía 04',
       debugShowCheckedModeBanner: false,
-      title: 'ManosSeguras - Guía 03',
-      home: ContenedorPrincipal(),
-    );
-  }
-}
-
-class ContenedorPrincipal extends StatefulWidget {
-  const ContenedorPrincipal({super.key});
-
-  @override
-  State<ContenedorPrincipal> createState() => _ContenedorPrincipalState();
-}
-
-class _ContenedorPrincipalState extends State<ContenedorPrincipal> {
-  int _indiceActual = 0;
-
-  final List<Widget> _pantallas = const [
-    PantallaEstablecimiento(),
-    PantallaPersonal(),
-    PantallaOportunidades(),
-    PantallaError(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pantallas[_indiceActual],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _indiceActual,
-        onTap: (index) {
-          setState(() {
-            _indiceActual = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF0F6E56),
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.domain),
-            label: 'Establecimiento',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Personal',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
-            label: 'Oportunidades',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.warning_amber),
-            label: 'Prueba Error',
-          ),
-        ],
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        useMaterial3: true,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const PantallaEstablecimiento(),
+        '/personal': (context) => const PantallaPersonal(),
+        '/oportunidades': (context) => const PantallaOportunidades(),
+        '/error': (context) => const PantallaError(),
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const PantallaError(),
+        );
+      },
     );
   }
 }

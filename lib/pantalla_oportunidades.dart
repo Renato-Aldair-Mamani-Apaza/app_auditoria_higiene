@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'tarjeta_oportunidad.dart';
 
 class PantallaOportunidades extends StatelessWidget {
   const PantallaOportunidades({super.key});
@@ -7,30 +8,46 @@ class PantallaOportunidades extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Oportunidades'),
-        backgroundColor: const Color(0xFF0F6E56),
+        title: const Text('Oportunidades de Mejora'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Card(
-              color: Colors.green.shade50,
-              child: const ListTile(
-                leading: Icon(Icons.check_circle, color: Colors.green),
-                title: Text('Oportunidad 1 (Activa)'),
-                subtitle: Text('Antes del contacto con el paciente'),
+            const Text(
+              'Hallazgos Identificados',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            Expanded(
+              child: ListView(
+                children: const [
+                  TarjetaOportunidad(
+                    titulo: 'Falta de Señalética',
+                    descripcion: 'No se observa cartel de lavado de manos en zona de cocina.',
+                    nivelRiesgo: 'Medio',
+                  ),
+                  TarjetaOportunidad(
+                    titulo: 'Almacenamiento Inadecuado',
+                    descripcion: 'Productos de limpieza cerca de insumos de cocina.',
+                    nivelRiesgo: 'Alto',
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            Card(
-              color: Colors.grey.shade100,
-              child: const ListTile(
-                leading: Icon(Icons.radio_button_unchecked, color: Colors.grey),
-                title: Text('Oportunidad 2 (Inactiva)'),
-                subtitle: Text('Antes de realizar una tarea antiséptica'),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(48),
+                backgroundColor: Colors.teal,
+                foregroundColor: Colors.white,
               ),
-            ),
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              icon: const Icon(Icons.home),
+              label: const Text('Finalizar Auditoría / Volver al Inicio'),
+            )
           ],
         ),
       ),
